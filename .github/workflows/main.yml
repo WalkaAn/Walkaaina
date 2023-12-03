@@ -57,7 +57,7 @@ jobs:
         Write-Host "Ngrok URL: $ngrokUrl"
  
     - name: Wait before cleanup
-      run: Start-Sleep -Seconds 36000
+      run: Start-Sleep -Seconds 9999
  
     - name: Cleanup
       if: always()
