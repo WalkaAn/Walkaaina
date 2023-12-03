@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
  
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-terbaru
  
     steps:
     - name: Download
@@ -30,10 +30,10 @@ jobs:
     - name: Start ngrok in the background
       run: Start-Process -FilePath ".\ngrok\ngrok.exe" -ArgumentList "tcp 3389"
  
-    - name: Wait for ngrok to start
+    - name: Menunggu Start NGROK
       run: Start-Sleep -Seconds 5
  
-    - name: Get ngrok tunnel information
+    - name: Mendapat data NGROK
       run: |
         $maxAttempts = 20
         $attempts = 0
@@ -56,3 +56,27 @@ jobs:
         $ngrokUrl = ($ngrokApi | ConvertFrom-Json).tunnels[0].public_url
         Write-Host "Ngrok URL: $ngrokUrl"
  
+    - name: Ditutup setelah...
+      run: Start-Sleep -Seconds 36000
+ 
+    - name: Tutup rampung
+      if: always()
+      run: |
+        $ngrokProcess = Get-Process -Name "ngrok" -ErrorAction SilentlyContinue
+        if ($null -ne $ngrokProcess) {
+          Write-Host "Terminating ngrok process..."
+          $ngrokProcess | Stop-Process -Force
+        } else {
+          Write-Host "Ngrok process not found."
+        }
+ 
+    - name: Cleanup
+      if: always()
+      run: |
+        $ngrokProcess = Get-Process -Name "ngrok" -ErrorAction SilentlyContinue
+        if ($null -ne $ngrokProcess) {
+          Write-Host "Terminating ngrok process..."
+          $ngrokProcess | Stop-Process -Force
+        } else {
+          Write-Host "Ngrok process not found."
+        }
