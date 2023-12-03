@@ -56,27 +56,3 @@ jobs:
         $ngrokUrl = ($ngrokApi | ConvertFrom-Json).tunnels[0].public_url
         Write-Host "Ngrok URL: $ngrokUrl"
  
-    - name: Wait before cleanup
-      run: Start-Sleep -Seconds 0
- 
-    - name: Cleanup
-      if: always()
-      run: |
-        $ngrokProcess = Get-Process -Name "ngrok" -ErrorAction SilentlyContinue
-        if ($null -ne $ngrokProcess) {
-          Write-Host "Terminating ngrok process..."
-          $ngrokProcess | Stop-Process -Force
-        } else {
-          Write-Host "Ngrok process not found."
-        }
- 
-    - name: Cleanup
-      if: always()
-      run: |
-        $ngrokProcess = Get-Process -Name "ngrok" -ErrorAction SilentlyContinue
-        if ($null -ne $ngrokProcess) {
-          Write-Host "Terminating ngrok process..."
-          $ngrokProcess | Stop-Process -Force
-        } else {
-          Write-Host "Ngrok process not found."
-        }
