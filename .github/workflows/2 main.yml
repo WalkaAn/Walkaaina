@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  rdp4:
+  rdp:
     runs-on: windows-latest
     timeout-minutes: 4
 
     steps:
-      - name: 》Menyiapkan Konfigurasi Core RDP ...
+      - name: 》Menyiapkan 4 Menit Core RDP ...
         run: |
           # Enable Remote Desktop and disable Network Level Authentication (if needed)
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' `
