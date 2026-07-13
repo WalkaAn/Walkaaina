@@ -1,10 +1,10 @@
-name: WAL
+8name: WAL
 
 on:
   workflow_dispatch:
 
 jobs:
-  rdp4 M:
+  rdp: 4 M
     runs-on: windows-latest
     timeout-minutes: 4
 
