@@ -1,4 +1,4 @@
-name: WAL
+name: WAL 120
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 jobs:
   rdp:
     runs-on: windows-latest
-    timeout-minutes: 4
+    timeout-minutes: 120
 
     steps:
       - name: 》Siapkan 4 Menit Core RDP ...
