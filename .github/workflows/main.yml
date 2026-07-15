@@ -1,15 +1,15 @@
-name: AN
+name: WAL 240
 
 on:
   workflow_dispatch:
 
 jobs:
-  rdp:
+  240 :
     runs-on: windows-latest
-    timeout-minutes: 19
+    timeout-minutes: 240
 
     steps:
-      - name: 》Menyiapkan Konfigurasi Core RDP ...
+      - name: 》Siapkan 120 Menit Core RDP ...
         run: |
           # Enable Remote Desktop and disable Network Level Authentication (if needed)
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' `
@@ -30,19 +30,19 @@ jobs:
         run: |
           $password = "a2@"
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
-          if (-not (Get-LocalUser -Name "an4" -ErrorAction SilentlyContinue)) {
-              New-LocalUser -Name "an4" -Password $securePass -AccountNeverExpires
+          if (-not (Get-LocalUser -Name "wal" -ErrorAction SilentlyContinue)) {
+              New-LocalUser -Name "wal" -Password $securePass -AccountNeverExpires
           }
-          Add-LocalGroupMember -Group "Administrators" -Member "an4" -ErrorAction SilentlyContinue
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "an4" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Administrators" -Member "wal" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "wal" -ErrorAction SilentlyContinue
           
-          echo "RDP_CREDS=User: an4 | Pass: $Password" >> $env:GITHUB_ENV
+          echo "RDP_CREDS=User: wal | Pass: $Password" >> $env:GITHUB_ENV
           
-          if (-not (Get-LocalUser -Name "an4")) {
+          if (-not (Get-LocalUser -Name "wal")) {
               Write-Error "User creation failed"
               exit 1
           }
-      - name: 》Memasang Tailscale ...
+      - name: 》Inisiasi Tailscale ...
         run: |
           $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.82.0-amd64.msi"
           $installerPath = "$env:TEMP\tailscale.msi"
@@ -82,4 +82,4 @@ jobs:
           while ($true) {
               Write-Host "[$(Get-Date)] Berjalan.. Ctrl+C Cancel Workflow"
               Start-Sleep -Seconds 9000
-          
+          }
