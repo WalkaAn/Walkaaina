@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  winwin :
+  win240 :
     runs-on: windows-latest
     timeout-minutes: 240
 
     steps:
-      - name: 》Siapkan 120 Menit Core RDP ...
+      - name: 》Siapkan 240 Menit Core RDP ...
         run: |
           # Enable Remote Desktop and disable Network Level Authentication (if needed)
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' `
