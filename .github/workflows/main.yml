@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  240 :
+  winwin :
     runs-on: windows-latest
     timeout-minutes: 240
 
